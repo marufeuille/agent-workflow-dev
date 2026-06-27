@@ -5,11 +5,12 @@
 ## 進捗・設計資料
 - 全体設計: [docs/design/00-overview.md](docs/design/00-overview.md) / 各Agent詳細: `docs/design/10-14`
 - 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB: 基盤・スキーマ・設定 ✅）
+- 次フェーズ計画: [docs/impl/phase-c-plan.md](docs/impl/phase-c-plan.md)（フェーズC: wrapper CLI ロードマップ）
 
 ### フェーズ進捗
 - フェーズA（環境準備・大項目0-4）: ⏭️ 後回し（token発行・repo決定等の人間作業）
 - フェーズB（基盤・スキーマ・設定・大項目5-7）: ✅ 完了
-- フェーズC（wrapper CLI・大項目8-10）: 次フェーズ
+- フェーズC（wrapper CLI・大項目8-10）: 次フェーズ（[ロードマップ](docs/impl/phase-c-plan.md)あり）
 - フェーズD（Claude Code 設定・大項目11-13）: 未着手
 - フェーズE（検証・ガード・大項目14-20）: 未着手
 - フェーズF（MVP・運用・大項目21-23）: 未着手
