@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-workflow/schemas/review_finding.schema.json",
+  "title": "ReviewFinding",
+  "description": "review subtask から生まれる構造化された指摘。Reviewer は直接コードを修正せず、本エンティティを作る。must_fix の finding がある場合は fix subtask が生成される。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "task_id", "severity", "category", "file", "description", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "description": "親 beads_task の id",
+      "minLength": 1
+    },
+    "severity": {
+      "type": "string",
+      "description": "指摘の重要度。must_fix は fix subtask を生成する",
+      "enum": ["must_fix", "should_fix", "nit", "question"]
+    },
+    "category": {
+      "type": "string",
+      "description": "指摘カテゴリ（test / design / security / compatibility / readability 等）",
+      "minLength": 1
+    },
+    "file": {
+      "type": "string",
+      "description": "対象ファイルパス",
+      "minLength": 1
+    },
+    "line": {
+      "type": "integer",
+      "description": "対象行番号",
+      "minimum": 1
+    },
+    "description": {
+      "type": "string",
+      "description": "指摘内容の説明",
+      "minLength": 1
+    },
+    "suggested_fix": {
+      "type": "string",
+      "description": "修正提案"
+    },
+    "status": {
+      "type": "string",
+      "description": "finding の状態。Fixer が修正すると fixed になる",
+      "enum": ["open", "fixed"]
+    }
+  }
+}

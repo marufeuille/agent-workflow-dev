@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-workflow/schemas/beads_subtask.schema.json",
+  "title": "BeadsSubtask",
+  "description": "agent が実行する単位。kind ごとに役割（implement/review/fix/verify/summarize）が分かれる。各 agent は ready な自 role の subtask を取得して実行する。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "status", "parent_task_id"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "type": "string",
+      "description": "subtask の種別（agent の役割）",
+      "enum": ["implement", "review", "fix", "verify", "summarize"]
+    },
+    "status": {
+      "type": "string",
+      "description": "subtask の状態",
+      "enum": ["ready", "in_progress", "closed"]
+    },
+    "parent_task_id": {
+      "type": "string",
+      "description": "親 beads_task の id",
+      "minLength": 1
+    },
+    "instructions": {
+      "type": "string",
+      "description": "実行・レビュー時の指示"
+    },
+    "input_refs": {
+      "type": "object",
+      "description": "入力参照。fix subtask の場合 {review_finding_ids: [...]} などを保持",
+      "additionalProperties": true
+    },
+    "output_refs": {
+      "type": "object",
+      "description": "出力参照。fix subtask の場合 {commit_sha: \"...\"} などを保持",
+      "additionalProperties": true
+    }
+  }
+}

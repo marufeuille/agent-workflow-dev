@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-workflow/schemas/story_review_summary.schema.json",
+  "title": "StoryReviewSummary",
+  "description": "StoryReviewer が Shortcut に投稿する、Story 全体の集約サマリー。acceptance criteria ごとの充足状況と、In Review 可能かの総合判定を含む。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "beads_story_id",
+    "shortcut_story_id",
+    "acceptance_criteria",
+    "tasks_summary",
+    "findings_summary",
+    "prs_summary",
+    "ready_for_review"
+  ],
+  "properties": {
+    "beads_story_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shortcut_story_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "description": "acceptance criteria ごとの充足判定",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "satisfied", "evidence"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "acceptance criteria の ID（AC-1 等）",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "acceptance criteria の説明",
+            "minLength": 1
+          },
+          "satisfied": {
+            "type": "boolean",
+            "description": "充足判定結果"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "判定の根拠（PR 番号・subtask 等）",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "tasks_summary": {
+      "type": "object",
+      "description": "全 beads_task の完了状況サマリ",
+      "additionalProperties": true
+    },
+    "findings_summary": {
+      "type": "object",
+      "description": "open な review_finding の有無と件数",
+      "additionalProperties": true
+    },
+    "prs_summary": {
+      "type": "object",
+      "description": "各 PR の merge / CI 状態サマリ",
+      "additionalProperties": true
+    },
+    "ready_for_review": {
+      "type": "boolean",
+      "description": "Story 全体が In Review 可能かの総合判定。open must_fix finding がなく、必要 PR が merge 済みの場合に true"
+    }
+  }
+}

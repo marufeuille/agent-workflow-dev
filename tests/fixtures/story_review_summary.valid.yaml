@@ -1,0 +1,24 @@
+# story_review_summary の正常系サンプル（全 AC 充足、ready_for_review: true）。
+beads_story_id: "bd-story-001"
+shortcut_story_id: "sc-123"
+acceptance_criteria:
+  - id: "AC-1"
+    description: "Saved filters persist across sessions."
+    satisfied: true
+    evidence: "PR #456 merged; tests in tests/api/* pass."
+  - id: "AC-2"
+    description: "Empty filter names are rejected."
+    satisfied: true
+    evidence: "PR #456 merged; finding-001 fixed and re-reviewed."
+tasks_summary:
+  total: 1
+  verified: 1
+  in_progress: 0
+findings_summary:
+  open_must_fix: 0
+  open_total: 0
+prs_summary:
+  merged: [456]
+  pending: []
+  ci_failed: []
+ready_for_review: true

@@ -1,0 +1,10 @@
+# review_finding の正常系サンプル（must_fix / open）。
+id: "finding-001"
+task_id: "bd-task-001"
+severity: "must_fix"
+category: "test"
+file: "app/api/saved_filters.py"
+line: 82
+description: "Missing validation for empty filter name."
+suggested_fix: "Return 400 when name is empty."
+status: "open"

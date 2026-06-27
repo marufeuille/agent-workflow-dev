@@ -1,0 +1,17 @@
+# beads_task の正常系サンプル。PR 作成後の状態（pr_numbers, current_phase あり）。
+id: "bd-task-001"
+shortcut_story_id: "sc-123"
+title: "Add saved filters persistence"
+planned_pr_scope: "Backend API and persistence only; UI changes are out of scope."
+acceptance_refs:
+  - "AC-1"
+  - "AC-2"
+expected_files:
+  - "app/api/*"
+  - "app/models/*"
+  - "tests/api/*"
+branch_name: "agent/sc-123-saved-filters-api"
+pr_numbers:
+  - 456
+current_phase: "verified"
+depends_on: []

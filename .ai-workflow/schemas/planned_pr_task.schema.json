@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-workflow/schemas/planned_pr_task.schema.json",
+  "title": "PlannedPRTask",
+  "description": "StoryPlanner が作る beads_task の下書き。PR 粒度の計画単位。永続化は任意。planned_pr_task は beads_task へ materialize される。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "title",
+    "planning_reason",
+    "planned_pr_scope",
+    "acceptance_refs",
+    "expected_files",
+    "initial_subtasks"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "PR / タスクのタイトル",
+      "minLength": 1
+    },
+    "planning_reason": {
+      "type": "string",
+      "description": "なぜこの PR 粒度で分割したかの理由",
+      "minLength": 1
+    },
+    "planned_pr_scope": {
+      "type": "string",
+      "description": "この PR で変更する範囲",
+      "minLength": 1
+    },
+    "out_of_scope": {
+      "type": "array",
+      "description": "明示的に対象外とする範囲",
+      "items": { "type": "string" }
+    },
+    "acceptance_refs": {
+      "type": "array",
+      "description": "対応する acceptance criteria の ID リスト（AC-1 等）",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "expected_files": {
+      "type": "array",
+      "description": "変更を想定するファイルパス群（glob 可）",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "depends_on": {
+      "type": "array",
+      "description": "依存する別 task の識別子（title 等）",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "initial_subtasks": {
+      "type": "array",
+      "description": "この task に最初に生成される subtask（implement, review）",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "instructions"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "初期 subtask の種別。StoryPlanner は implement / review のみ生成する",
+            "enum": ["implement", "review"]
+          },
+          "instructions": {
+            "type": "string",
+            "description": "実行時の指示",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

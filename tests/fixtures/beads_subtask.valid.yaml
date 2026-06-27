@@ -1,0 +1,10 @@
+# beads_subtask の正常系サンプル（fix subtask。input_refs に finding を持つ）。
+id: "bd-subtask-fix-001"
+kind: "fix"
+status: "ready"
+parent_task_id: "bd-task-001"
+instructions: "Fix empty filter name validation per finding-001."
+input_refs:
+  review_finding_ids:
+    - "finding-001"
+output_refs: {}

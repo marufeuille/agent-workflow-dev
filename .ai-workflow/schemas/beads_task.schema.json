@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-workflow/schemas/beads_task.schema.json",
+  "title": "BeadsTask",
+  "description": "PR 粒度の作業単位。planned_pr_task から materialize され、PR 作成後に pr_numbers と紐づく。1 beads_task = 1 task branch / PR。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "shortcut_story_id",
+    "title",
+    "planned_pr_scope",
+    "acceptance_refs",
+    "expected_files"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "beads_task の一意識別子（bd-task-001 等）",
+      "minLength": 1
+    },
+    "shortcut_story_id": {
+      "type": "string",
+      "description": "紐づく Shortcut Story の ID",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "planned_pr_scope": {
+      "type": "string",
+      "description": "この PR で変更する範囲",
+      "minLength": 1
+    },
+    "acceptance_refs": {
+      "type": "array",
+      "description": "この task が対応する acceptance criteria の ID リスト",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "expected_files": {
+      "type": "array",
+      "description": "変更を想定するファイルパス群（glob 可）",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "branch_name": {
+      "type": "string",
+      "description": "task branch 名（agent/sc-...-...）"
+    },
+    "pr_numbers": {
+      "type": "array",
+      "description": "PR 作成後に記録される PR 番号",
+      "items": { "type": "integer", "minimum": 1 },
+      "default": []
+    },
+    "current_phase": {
+      "type": "string",
+      "description": "task の現在のフェーズ",
+      "enum": ["planning", "implementation", "review", "verified", "done"]
+    },
+    "depends_on": {
+      "type": "array",
+      "description": "依存する別 task の id リスト",
+      "items": { "type": "string" },
+      "default": []
+    }
+  }
+}

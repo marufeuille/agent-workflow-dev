@@ -1,0 +1,19 @@
+# StoryPlanner が生成する planned PR タスクの正常系サンプル（sc-123 saved-filters）
+title: "Add saved filters persistence"
+planning_reason: "Storage changes can be reviewed independently from API behavior."
+planned_pr_scope: "Migration and model layer for saved filters."
+out_of_scope:
+  - "API endpoint changes"
+  - "UI changes"
+acceptance_refs:
+  - "AC-1"
+  - "AC-2"
+expected_files:
+  - "db/migrations/*"
+  - "app/models/*"
+depends_on: []
+initial_subtasks:
+  - kind: implement
+    instructions: "Add migration and model layer for saved filters."
+  - kind: review
+    instructions: "Review migration and model layer for correctness and scope adherence."
