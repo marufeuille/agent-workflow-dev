@@ -32,10 +32,10 @@ Shortcut × beads × GitHub × Claude Code を連携させた AI 開発ワーク
 5. **Fixer は open review_finding の範囲だけ修正する**（範囲外の大きな変更はしない）
 6. **Implementer は planned_pr_scope / expected_files の範囲内のみ変更する**
 
-## wrapper CLI（フェーズC以降で実装）
-- `bin/sc-story`: Shortcut Story の取得 / コメント / state 更新
-- `bin/bdw`: beads（story / task / subtask / finding）の操作。`bd` CLI をラップ
-- `bin/ghw`: GitHub の branch / PR 操作。**main 直接 PR・merge は禁止**
+## wrapper CLI（フェーズCで実装済み: [phase-c.md](docs/impl/phase-c.md) / [bd-mapping.md](docs/design/bd-mapping.md)）
+- `bin/sc-story`: Shortcut Story の取得 / コメント / state 更新。**Done 遷移は禁止**（mock 完結、real API は後回し）
+- `bin/bdw`: beads（story / task / subtask / finding）の操作。`bd` CLI をラップ。入力は必ず schema 検証を通す
+- `bin/ghw`: GitHub の branch / PR 操作。**main 直接 PR・merge は禁止**（dry-run + safe 呼出で検証）
 
 ## 設定・検証
 - workflow 設定: `.ai-workflow/config.yaml`

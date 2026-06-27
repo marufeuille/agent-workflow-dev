@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# bin/bdw: beads(bd) wrapper CLI のエントリポイント。
+# 実体は ai_workflow.cli.bdw。リポジトリルートから呼ぶ前提。
+exec uv run python -m ai_workflow.cli.bdw "$@"

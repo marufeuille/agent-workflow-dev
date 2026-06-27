@@ -8,3 +8,6 @@ __pycache__/
 
 # pytest
 .pytest_cache/
+
+# beads (bd) local database（個人検証のローカル状態。共用 repo には commit しない）
+.beads/

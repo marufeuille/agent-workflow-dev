@@ -1,0 +1,5 @@
+# close --output が読む output_refs のサンプル（schema 対象外の自由 dict）。
+# fix subtask が修正コミットを記録する想定。
+commit_shas:
+  - abc123
+decision: fixed

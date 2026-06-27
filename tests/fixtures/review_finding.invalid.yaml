@@ -1,0 +1,7 @@
+# review_finding schema 違反（task_id 欠落）。guard テスト用。
+id: finding-bad
+severity: must_fix
+category: test
+file: app/api/saved_filters.py
+description: Missing validation for empty filter name.
+status: open

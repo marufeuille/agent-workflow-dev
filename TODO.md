@@ -4,13 +4,14 @@
 
 ## 進捗・設計資料
 - 全体設計: [docs/design/00-overview.md](docs/design/00-overview.md) / 各Agent詳細: `docs/design/10-14`
-- 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB: 基盤・スキーマ・設定 ✅）
-- 次フェーズ計画: [docs/impl/phase-c-plan.md](docs/impl/phase-c-plan.md)（フェーズC: wrapper CLI ロードマップ）
+- 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB ✅） / [docs/impl/phase-c.md](docs/impl/phase-c.md)（フェーズC: wrapper CLI ✅）
+- マッピング設計: [docs/design/bd-mapping.md](docs/design/bd-mapping.md)（5スキーマ → bd issue）
+- 次フェーズ計画: [docs/impl/phase-c-plan.md](docs/impl/phase-c-plan.md)（フェーズC ロードマップ・参考）
 
 ### フェーズ進捗
 - フェーズA（環境準備・大項目0-4）: ⏭️ 後回し（token発行・repo決定等の人間作業）
 - フェーズB（基盤・スキーマ・設定・大項目5-7）: ✅ 完了
-- フェーズC（wrapper CLI・大項目8-10）: 次フェーズ（[ロードマップ](docs/impl/phase-c-plan.md)あり）
+- フェーズC（wrapper CLI・大項目8-10）: ✅ 完了（[実装ログ](docs/impl/phase-c.md)）
 - フェーズD（Claude Code 設定・大項目11-13）: 未着手
 - フェーズE（検証・ガード・大項目14-20）: 未着手
 - フェーズF（MVP・運用・大項目21-23）: 未着手
@@ -201,13 +202,13 @@ review_finding
 
 ### 8. Shortcut wrapper CLI を作成する
 
-- [ ] `bin/sc-story` を作成する
-- [ ] Shortcut Story を JSON で取得するコマンドを実装する
-- [ ] Shortcut Story にコメントするコマンドを実装する
-- [ ] Shortcut Story の State を更新するコマンドを実装する
-- [ ] Shortcut Story に beads_story_id を記録するコマンドを実装する
-- [ ] Shortcut API のエラー処理を実装する
-- [ ] API token 未設定時に分かりやすいエラーを出す
+- [x] `bin/sc-story` を作成する
+- [x] Shortcut Story を JSON で取得するコマンドを実装する
+- [x] Shortcut Story にコメントするコマンドを実装する
+- [x] Shortcut Story の State を更新するコマンドを実装する
+- [x] Shortcut Story に beads_story_id を記録するコマンドを実装する
+- [x] Shortcut API のエラー処理を実装する
+- [x] API token 未設定時に分かりやすいエラーを出す
 
 ```text
 bin/sc-story get <story-id> --json
@@ -218,16 +219,16 @@ bin/sc-story link <story-id> --beads-story <beads-story-id>
 
 ### 9. beads wrapper CLI を作成する
 
-- [ ] `bin/bdw` を作成する
-- [ ] beads story root を作成するコマンドを実装する
-- [ ] beads task を作成するコマンドを実装する
-- [ ] beads subtask を作成するコマンドを実装する
-- [ ] role ごとの ready subtask を取得するコマンドを実装する
-- [ ] subtask を close するコマンドを実装する
-- [ ] review_finding を作成するコマンドを実装する
-- [ ] open finding を一覧するコマンドを実装する
-- [ ] beads task に pr_number を記録するコマンドを実装する
-- [ ] beads task / subtask / finding の schema validation を実装する
+- [x] `bin/bdw` を作成する
+- [x] beads story root を作成するコマンドを実装する
+- [x] beads task を作成するコマンドを実装する
+- [x] beads subtask を作成するコマンドを実装する
+- [x] role ごとの ready subtask を取得するコマンドを実装する
+- [x] subtask を close するコマンドを実装する
+- [x] review_finding を作成するコマンドを実装する
+- [x] open finding を一覧するコマンドを実装する
+- [x] beads task に pr_number を記録するコマンドを実装する
+- [x] beads task / subtask / finding の schema validation を実装する
 
 ```text
 bin/bdw story create --shortcut-story <id> --title <title> --json
@@ -238,19 +239,21 @@ bin/bdw close <subtask-id> --output <file>
 bin/bdw finding create --file <finding.yaml> --json
 bin/bdw finding list --task <task-id> --open --json
 bin/bdw task link-pr <task-id> --pr <number>
+bin/bdw finding update <finding-id> --status fixed    # 拡張: finding を fixed 化（設計書13整合）
+bin/bdw task set-phase <task-id> <phase>               # 拡張: current_phase 更新（設計書12整合）
 ```
 
 ### 10. GitHub wrapper CLI を作成する
 
-- [ ] `bin/ghw` を作成する
-- [ ] story branch を作成するコマンドを実装する
-- [ ] task branch を作成するコマンドを実装する
-- [ ] story branch 宛てに PR を作るコマンドを実装する
-- [ ] PR 情報を JSON で取得するコマンドを実装する
-- [ ] PR にコメントするコマンドを実装する
-- [ ] PR の CI 状態を取得するコマンドを実装する
-- [ ] final PR を作成するコマンドを実装する
-- [ ] main への merge は実装しない、または明示的に禁止する
+- [x] `bin/ghw` を作成する
+- [x] story branch を作成するコマンドを実装する
+- [x] task branch を作成するコマンドを実装する
+- [x] story branch 宛てに PR を作るコマンドを実装する
+- [x] PR 情報を JSON で取得するコマンドを実装する
+- [x] PR にコメントするコマンドを実装する
+- [x] PR の CI 状態を取得するコマンドを実装する
+- [x] final PR を作成するコマンドを実装する
+- [x] main への merge は実装しない、または明示的に禁止する
 
 ```text
 bin/ghw branch create-story <story-id> --from main

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# bin/sc-story: Shortcut Story wrapper CLI のエントリポイント。
+# 実体は ai_workflow.cli.sc_story。リポジトリルートから呼ぶ前提。
+exec uv run python -m ai_workflow.cli.sc_story "$@"

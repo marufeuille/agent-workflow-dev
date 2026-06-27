@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# bin/ghw: GitHub(gh/git) wrapper CLI のエントリポイント。
+# 実体は ai_workflow.cli.ghw。リポジトリルートから呼ぶ前提。
+exec uv run python -m ai_workflow.cli.ghw "$@"
