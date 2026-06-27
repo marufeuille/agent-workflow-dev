@@ -1,0 +1,30 @@
+# AI Development Workflow 設定
+# Shortcut / GitHub / 計画ポリシー / スキーマ位置を定義する。
+
+shortcut:
+  states:
+    backlog: "Backlog"
+    ready: "Ready"
+    planning: "Planning"
+    doing: "Doing"
+    in_review: "In Review"
+    blocked: "Blocked"
+    done: "Done"
+
+github:
+  default_branch: "main"
+  story_branch_prefix: "story"
+  task_branch_prefix: "agent"
+  # AI agent に禁止する操作（セーフティガード）
+  allow_ai_merge_to_main: false
+  allow_ai_mark_shortcut_done: false
+
+planning_policy:
+  pr_granularity: "reviewable_change_set"
+  branch_strategy: "story_branch"
+  max_expected_prs: 5
+  prefer_separate_refactor_pr: true
+  require_tests_per_pr: true
+
+schemas:
+  dir: ".ai-workflow/schemas"

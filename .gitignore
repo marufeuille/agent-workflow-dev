@@ -1,2 +1,10 @@
 .env
 **/.DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# pytest
+.pytest_cache/
