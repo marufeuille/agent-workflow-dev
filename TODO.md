@@ -2,6 +2,18 @@
 ## 仕様書
 - [仕様書](docs/SPECIFICATION.md)
 
+## 進捗・設計資料
+- 全体設計: [docs/design/00-overview.md](docs/design/00-overview.md) / 各Agent詳細: `docs/design/10-14`
+- 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB: 基盤・スキーマ・設定 ✅）
+
+### フェーズ進捗
+- フェーズA（環境準備・大項目0-4）: ⏭️ 後回し（token発行・repo決定等の人間作業）
+- フェーズB（基盤・スキーマ・設定・大項目5-7）: ✅ 完了
+- フェーズC（wrapper CLI・大項目8-10）: 次フェーズ
+- フェーズD（Claude Code 設定・大項目11-13）: 未着手
+- フェーズE（検証・ガード・大項目14-20）: 未着手
+- フェーズF（MVP・運用・大項目21-23）: 未着手
+
 ## 環境セットアップタスク
 
 ### 0. 前提確認
@@ -80,14 +92,14 @@ task PR: agent/sc-123-saved-filters-api -> story/sc-123-saved-filters
 
 ### 5. リポジトリ構成を追加する
 
-- [ ] `.claude/` ディレクトリを作成する
-- [ ] `.claude/agents/` ディレクトリを作成する
-- [ ] `.claude/commands/` ディレクトリを作成する
-- [ ] `.ai-workflow/` ディレクトリを作成する
-- [ ] `.ai-workflow/schemas/` ディレクトリを作成する
-- [ ] `bin/` ディレクトリを作成する
-- [ ] `CLAUDE.md` を作成する
-- [ ] workflow 全体の不変ルールを `CLAUDE.md` に記述する
+- [x] `.claude/` ディレクトリを作成する
+- [x] `.claude/agents/` ディレクトリを作成する
+- [x] `.claude/commands/` ディレクトリを作成する
+- [x] `.ai-workflow/` ディレクトリを作成する
+- [x] `.ai-workflow/schemas/` ディレクトリを作成する
+- [x] `bin/` ディレクトリを作成する
+- [x] `CLAUDE.md` を作成する
+- [x] workflow 全体の不変ルールを `CLAUDE.md` に記述する
 
 ```text
 repo/
@@ -121,13 +133,13 @@ repo/
 
 ### 6. workflow 設定ファイルを作成する
 
-- [ ] `.ai-workflow/config.yaml` を作成する
-- [ ] Shortcut の State 対応を設定する
-- [ ] GitHub の default branch を設定する
-- [ ] story branch / task branch の命名規則を設定する
-- [ ] PR 粒度の基本方針を設定する
-- [ ] AI agent に許可する操作を設定する
-- [ ] AI agent に禁止する操作を設定する
+- [x] `.ai-workflow/config.yaml` を作成する
+- [x] Shortcut の State 対応を設定する
+- [x] GitHub の default branch を設定する
+- [x] story branch / task branch の命名規則を設定する
+- [x] PR 粒度の基本方針を設定する
+- [x] AI agent に許可する操作を設定する
+- [x] AI agent に禁止する操作を設定する
 
 ```yaml
 shortcut:
@@ -157,13 +169,13 @@ planning_policy:
 
 ### 7. データスキーマを定義する
 
-- [ ] `planned_pr_task` の schema を定義する
-- [ ] `beads_task` の schema を定義する
-- [ ] `beads_subtask` の schema を定義する
-- [ ] `review_finding` の schema を定義する
-- [ ] `story_review_summary` の schema を定義する
-- [ ] schema validation 用のテストデータを作成する
-- [ ] Claude Code が出力した YAML / JSON を schema validation できるようにする
+- [x] `planned_pr_task` の schema を定義する
+- [x] `beads_task` の schema を定義する
+- [x] `beads_subtask` の schema を定義する
+- [x] `review_finding` の schema を定義する
+- [x] `story_review_summary` の schema を定義する
+- [x] schema validation 用のテストデータを作成する
+- [x] Claude Code が出力した YAML / JSON を schema validation できるようにする
 
 ```text
 Shortcut Story
