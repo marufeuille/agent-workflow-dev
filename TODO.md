@@ -4,7 +4,7 @@
 
 ## 進捗・設計資料
 - 全体設計: [docs/design/00-overview.md](docs/design/00-overview.md) / 各Agent詳細: `docs/design/10-14`
-- 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB ✅） / [docs/impl/phase-c.md](docs/impl/phase-c.md)（フェーズC: wrapper CLI ✅） / [docs/impl/phase-d.md](docs/impl/phase-d.md)（フェーズD: Claude Code 設定 ✅）
+- 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB ✅） / [docs/impl/phase-c.md](docs/impl/phase-c.md)（フェーズC: wrapper CLI ✅） / [docs/impl/phase-d.md](docs/impl/phase-d.md)（フェーズD: Claude Code 設定 ✅） / [docs/impl/phase-e.md](docs/impl/phase-e.md)（フェーズE: 検証・ガード ✅） / [docs/impl/phase-f.md](docs/impl/phase-f.md)（フェーズF: MVP・運用 ✅）
 - マッピング設計: [docs/design/bd-mapping.md](docs/design/bd-mapping.md)（5スキーマ → bd issue）
 - 次フェーズ計画: [docs/impl/phase-c-plan.md](docs/impl/phase-c-plan.md)（フェーズC ロードマップ・参考）
 
@@ -14,7 +14,7 @@
 - フェーズC（wrapper CLI・大項目8-10）: ✅ 完了（[実装ログ](docs/impl/phase-c.md)）
 - フェーズD（Claude Code 設定・大項目11-13）: ✅ 完了（[実装ログ](docs/impl/phase-d.md)）
 - フェーズE（検証・ガード・大項目14-20）: ✅ 完了（[実装ログ](docs/impl/phase-e.md)）
-- フェーズF（MVP・運用・大項目21-23）: 未着手
+- フェーズF（MVP・運用・大項目21-23）: ✅ 完了（[実装ログ](docs/impl/phase-f.md) / [運用手順](docs/operations.md)）
 
 ## 環境セットアップタスク
 
@@ -384,36 +384,36 @@ bin/ghw pr create-final --story-branch <branch> --base main
 
 ### 21. MVP 動作確認
 
-- [ ] fixture の Shortcut Story で `/story-plan` を実行する
-- [ ] beads_story / beads_task / subtask が作成されることを確認する
-- [ ] story branch が作成されることを確認する
-- [ ] `/work-next` で implement subtask を実行する
-- [ ] story branch 宛てに PR が作成されることを確認する
-- [ ] `/review-pr` で review_finding が作成できることを確認する
-- [ ] `/fix-findings` で finding を修正できることを確認する
-- [ ] `/story-review` で Shortcut に summary が戻ることを確認する
-- [ ] Shortcut Story が In Review まで進み、Done にはならないことを確認する
+- [x] fixture の Shortcut Story で `/story-plan` を実行する
+- [x] beads_story / beads_task / subtask が作成されることを確認する
+- [x] story branch が作成されることを確認する
+- [x] `/work-next` で implement subtask を実行する
+- [x] story branch 宛てに PR が作成されることを確認する
+- [x] `/review-pr` で review_finding が作成できることを確認する
+- [x] `/fix-findings` で finding を修正できることを確認する
+- [x] `/story-review` で Shortcut に summary が戻ることを確認する
+- [x] Shortcut Story が In Review まで進み、Done にはならないことを確認する
 
 ### 22. 運用ドキュメントを作成する
 
-- [ ] 人間が Shortcut Story を書くときのテンプレートを作る
-- [ ] acceptance criteria の書き方を決める
-- [ ] StoryPlanner を実行するタイミングを決める
-- [ ] AI agent が作成した PR を人間が見る観点を決める
-- [ ] StoryReviewer の summary を人間が確認する手順を決める
-- [ ] Shortcut Story を Done にする条件を明文化する
-- [ ] 失敗時に story branch を破棄する手順を決める
-- [ ] story branch から main への final PR 手順を決める
+- [x] 人間が Shortcut Story を書くときのテンプレートを作る
+- [x] acceptance criteria の書き方を決める
+- [x] StoryPlanner を実行するタイミングを決める
+- [x] AI agent が作成した PR を人間が見る観点を決める
+- [x] StoryReviewer の summary を人間が確認する手順を決める
+- [x] Shortcut Story を Done にする条件を明文化する
+- [x] 失敗時に story branch を破棄する手順を決める
+- [x] story branch から main への final PR 手順を決める
 
 ### 23. 初期 MVP の完了条件
 
-- [ ] Shortcut Story から beads_task / subtask を生成できる
-- [ ] story branch を自動作成できる
-- [ ] task branch から story branch 宛てに PR を作成できる
-- [ ] PR 番号を beads_task に記録できる
-- [ ] review_finding を beads に記録できる
-- [ ] finding から fix subtask を生成できる
-- [ ] Story 全体の状態を Shortcut に summary として戻せる
-- [ ] AI agent が Shortcut Story を Done にしない
-- [ ] AI agent が main に merge しない
-- [ ] 人間が Shortcut 上で最終 Done 判断できる
+- [x] Shortcut Story から beads_task / subtask を生成できる
+- [x] story branch を自動作成できる
+- [x] task branch から story branch 宛てに PR を作成できる
+- [x] PR 番号を beads_task に記録できる
+- [x] review_finding を beads に記録できる
+- [x] finding から fix subtask を生成できる
+- [x] Story 全体の状態を Shortcut に summary として戻せる
+- [x] AI agent が Shortcut Story を Done にしない
+- [x] AI agent が main に merge しない
+- [x] 人間が Shortcut 上で最終 Done 判断できる
