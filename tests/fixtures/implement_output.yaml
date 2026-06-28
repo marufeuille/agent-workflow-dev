@@ -1,0 +1,8 @@
+# Implementer が subtask close 時に渡す output_refs のフィクスチャ
+status: "implemented"
+pr_number: 456
+commit_shas:
+  - "abc123def456"
+changed_files:
+  - "app/models/saved_filter.py"
+  - "tests/api/test_saved_filters.py"

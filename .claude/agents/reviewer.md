@@ -50,7 +50,7 @@ Reviewer は task PR を検証し、問題があれば構造化された `review
 1. `bin/ghw pr view <pr-number> --json` と `bin/ghw pr checks <pr-number> --json` で PR 状態を取得する。
 2. 対応する review subtask と親 beads_task を確認する。必要な task 詳細が wrapper 出力から得られない場合は安全に停止し、raw `bd` で直接変更しない。
 3. Shortcut Story を取得し、`acceptance_refs` が指す acceptance criteria を確認する。
-4. changed files が `expected_files` と `planned_pr_scope` に収まっているか確認する。
+4. changed files が `expected_files` と `planned_pr_scope` に収まっているか確認する。scope 外変更の検出には `uv run python -c "from ai_workflow.cli.scope_checker import files_outside_scope; ..."` または `ai_workflow/cli/scope_checker.py` を使う。scope 外ファイルがある場合は `should_fix` 以上の finding を作成する。
 5. acceptance criteria、テスト、設計、互換性、セキュリティ、可読性をレビューする。
 6. 問題がある場合は `review_finding.schema.json` に準拠する YAML を作成する。必須フィールドは `id`, `task_id`, `severity`, `category`, `file`, `description`, `status`。
 7. finding は `uv run python -m ai_workflow.schema_validator <file> review_finding` で検証してから `bin/bdw finding create` する。

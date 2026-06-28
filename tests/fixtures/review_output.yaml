@@ -1,0 +1,3 @@
+# Reviewer が subtask close 時に渡す output_refs（問題なし時）のフィクスチャ
+status: "reviewed"
+verdict: "approve"

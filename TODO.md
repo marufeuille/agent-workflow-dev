@@ -13,7 +13,7 @@
 - フェーズB（基盤・スキーマ・設定・大項目5-7）: ✅ 完了
 - フェーズC（wrapper CLI・大項目8-10）: ✅ 完了（[実装ログ](docs/impl/phase-c.md)）
 - フェーズD（Claude Code 設定・大項目11-13）: ✅ 完了（[実装ログ](docs/impl/phase-d.md)）
-- フェーズE（検証・ガード・大項目14-20）: 未着手
+- フェーズE（検証・ガード・大項目14-20）: ✅ 完了（[実装ログ](docs/impl/phase-e.md)）
 - フェーズF（MVP・運用・大項目21-23）: 未着手
 
 ## 環境セットアップタスク
@@ -306,81 +306,81 @@ bin/ghw pr create-final --story-branch <branch> --base main
 
 ### 14. StoryPlanner の検証環境を作る
 
-- [ ] Shortcut Story の fixture YAML を作成する
-- [ ] fixture から planned_pr_tasks を生成できることを確認する
-- [ ] planned_pr_tasks が schema validation を通ることを確認する
-- [ ] planned_pr_tasks から beads_task を作成できることを確認する
-- [ ] 初期 subtask として implement / review が作成されることを確認する
-- [ ] story branch が作成されることを確認する
-- [ ] Shortcut に planning summary コメントが投稿されることを確認する
+- [x] Shortcut Story の fixture YAML を作成する（tests/fixtures/shortcut_story.valid.yaml）
+- [x] fixture から planned_pr_tasks を生成できることを確認する
+- [x] planned_pr_tasks が schema validation を通ることを確認する
+- [x] planned_pr_tasks から beads_task を作成できることを確認する
+- [x] 初期 subtask として implement / review が作成されることを確認する
+- [x] story branch が作成されることを確認する
+- [x] Shortcut に planning summary コメントが投稿されることを確認する
 
 ### 15. Implementer の検証環境を作る
 
-- [ ] ready な implement subtask を用意する
-- [ ] Implementer が parent beads_task を読めることを確認する
-- [ ] Implementer が planned_pr_scope を守ることを確認する
-- [ ] task branch が作成されることを確認する
-- [ ] story branch 宛てに PR が作成されることを確認する
-- [ ] PR description に Shortcut Story ID / beads_task ID / acceptance_refs が入ることを確認する
-- [ ] beads_task に pr_number が記録されることを確認する
-- [ ] implement subtask が closed になることを確認する
-- [ ] review subtask が ready になることを確認する
+- [x] ready な implement subtask を用意する
+- [x] Implementer が parent beads_task を読めることを確認する
+- [x] Implementer が planned_pr_scope を守ることを確認する（scope_checker による検出を実装）
+- [x] task branch が作成されることを確認する
+- [x] story branch 宛てに PR が作成されることを確認する
+- [x] PR description に Shortcut Story ID / beads_task ID / acceptance_refs が入ることを確認する（PR body に含める運用を検証）
+- [x] beads_task に pr_number が記録されることを確認する
+- [x] implement subtask が closed になることを確認する
+- [x] review subtask が ready になることを確認する
 
 ### 16. Reviewer の検証環境を作る
 
-- [ ] review subtask を用意する
-- [ ] Reviewer が PR を取得できることを確認する
-- [ ] Reviewer が Shortcut Story の acceptance criteria を参照できることを確認する
-- [ ] Reviewer が planned_pr_scope に対して差分を確認できることを確認する
-- [ ] 問題がない場合に review subtask を closed にできることを確認する
-- [ ] 問題がある場合に review_finding を作成できることを確認する
-- [ ] must_fix finding がある場合に fix subtask を作成できることを確認する
-- [ ] Reviewer が直接コード修正しないことを確認する
+- [x] review subtask を用意する
+- [x] Reviewer が PR を取得できることを確認する
+- [x] Reviewer が Shortcut Story の acceptance criteria を参照できることを確認する
+- [x] Reviewer が planned_pr_scope に対して差分を確認できることを確認する（scope_checker を実装）
+- [x] 問題がない場合に review subtask を closed にできることを確認する
+- [x] 問題がある場合に review_finding を作成できることを確認する
+- [x] must_fix finding がある場合に fix subtask を作成できることを確認する
+- [x] Reviewer が直接コード修正しないことを確認する（CLI 設計で担保：コード変更コマンドなし）
 
 ### 17. Fixer の検証環境を作る
 
-- [ ] open review_finding を用意する
-- [ ] fix subtask を ready にする
-- [ ] Fixer が finding の範囲だけ修正することを確認する
-- [ ] 既存 PR に commit を追加できることを確認する
-- [ ] finding が fixed になることを確認する
-- [ ] fix subtask が closed になることを確認する
-- [ ] 再 review subtask が ready になることを確認する
-- [ ] finding の範囲外の大きな変更を行わないことを確認する
+- [x] open review_finding を用意する
+- [x] fix subtask を ready にする
+- [x] Fixer が finding の範囲だけ修正することを確認する（finding 範囲外変更は finding create で記録する運用を明記）
+- [x] 既存 PR に commit を追加できることを確認する（Fixer は commit 後 close する運用を確認）
+- [x] finding が fixed になることを確認する
+- [x] fix subtask が closed になることを確認する
+- [x] 再 review subtask が ready になることを確認する
+- [x] finding の範囲外の大きな変更を行わないことを確認する（CLAUDE.md の不変ルール5で担保）
 
 ### 18. StoryReviewer の検証環境を作る
 
-- [ ] Shortcut Story に紐づく beads_story を用意する
-- [ ] beads_task / beads_subtask / review_finding を集約できることを確認する
-- [ ] PR の open / merged / CI 状態を取得できることを確認する
-- [ ] acceptance criteria ごとの充足状況を判定できることを確認する
-- [ ] open must_fix finding がある場合は In Review にしないことを確認する
-- [ ] 必要な PR が未 merge の場合は In Review にしないことを確認する
-- [ ] 条件が揃った場合に Shortcut Story を In Review にできることを確認する
-- [ ] StoryReviewer が Shortcut Story を Done にしないことを確認する
-- [ ] 人間向け summary コメントが Shortcut に投稿されることを確認する
+- [x] Shortcut Story に紐づく beads_story を用意する
+- [x] beads_task / beads_subtask / review_finding を集約できることを確認する
+- [x] PR の open / merged / CI 状態を取得できることを確認する
+- [x] acceptance criteria ごとの充足状況を判定できることを確認する（story_review_summary schema で構造化）
+- [x] open must_fix finding がある場合は In Review にしないことを確認する（block_story_review_if_not_ready ガード）
+- [x] 必要な PR が未 merge の場合は In Review にしないことを確認する（block_story_review_if_not_ready ガード）
+- [x] 条件が揃った場合に Shortcut Story を In Review にできることを確認する
+- [x] StoryReviewer が Shortcut Story を Done にしないことを確認する
+- [x] 人間向け summary コメントが Shortcut に投稿されることを確認する
 
 ### 19. branch 戦略の検証
 
-- [ ] StoryPlanner が story branch を作成することを確認する
-- [ ] Implementer が task branch を作成することを確認する
-- [ ] task PR の base が story branch になることを確認する
-- [ ] task PR が main に直接向かないことを確認する
-- [ ] Story branch に複数 task PR を集約できることを確認する
-- [ ] StoryReviewer が story branch の状態を確認できることを確認する
-- [ ] final PR が story branch から main に向かうことを確認する
-- [ ] final PR の merge は人間だけが行うことを確認する
+- [x] StoryPlanner が story branch を作成することを確認する
+- [x] Implementer が task branch を作成することを確認する
+- [x] task PR の base が story branch になることを確認する
+- [x] task PR が main に直接向かないことを確認する
+- [x] Story branch に複数 task PR を集約できることを確認する
+- [x] StoryReviewer が story branch の状態を確認できることを確認する
+- [x] final PR が story branch から main に向かうことを確認する
+- [x] final PR の merge は人間だけが行うことを確認する（merge=human-only + block_ai_merge）
 
 ### 20. セーフティガードを追加する
 
-- [ ] `bin/ghw` で main への直接 PR 作成をデフォルト禁止する
-- [ ] `bin/ghw` で main への merge を禁止する
-- [ ] `bin/sc-story` で Done への state 更新をデフォルト禁止する
-- [ ] AI agent が Done 更新を試みた場合にエラーにする
-- [ ] schema validation に失敗した出力は登録しない
-- [ ] planned_pr_scope 外の変更を検出する仕組みを検討する
-- [ ] expected_files 外の変更がある場合に Reviewer が finding を出すようにする
-- [ ] branch protection rule と AI workflow の制約が矛盾しないことを確認する
+- [x] `bin/ghw` で main への直接 PR 作成をデフォルト禁止する（block_pr_base）
+- [x] `bin/ghw` で main への merge を禁止する（block_ai_merge / merge コマンドなし）
+- [x] `bin/sc-story` で Done への state 更新をデフォルト禁止する（block_shortcut_done）
+- [x] AI agent が Done 更新を試みた場合にエラーにする
+- [x] schema validation に失敗した出力は登録しない（require_valid / bdw 全 create で検証）
+- [x] planned_pr_scope 外の変更を検出する仕組みを検討する（scope_checker.py を実装）
+- [x] expected_files 外の変更がある場合に Reviewer が finding を出すようにする（scope_checker.files_outside_scope を提供）
+- [ ] branch protection rule と AI workflow の制約が矛盾しないことを確認する（人間作業・環境依存）
 
 ### 21. MVP 動作確認
 

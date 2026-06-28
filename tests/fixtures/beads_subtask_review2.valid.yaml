@@ -1,0 +1,10 @@
+# Fixer が修正後に作成する re-review subtask のフィクスチャ
+id: "bd-subtask-review-003"
+kind: "review"
+status: "ready"
+parent_task_id: "bd-task-001"
+instructions: "Re-review after fix of finding-001."
+input_refs:
+  review_finding_ids:
+    - "finding-001"
+output_refs: {}

@@ -49,3 +49,25 @@ def require_valid(instance: dict, schema_name: str, schemas_dir: str) -> None:
         raise GuardError(
             f"schema validation 失敗 ({schema_name}): {e.message} at {location}"
         )
+
+
+def block_story_review_if_not_ready(
+    open_must_fix_count: int,
+    unmerged_pr_count: int,
+) -> None:
+    """StoryReviewer が Shortcut Story を In Review にできない条件をガード（大項目18・20）。
+
+    - open な must_fix finding がある場合はブロック
+    - 必要な PR が未 merge の場合はブロック
+    条件が揃っている場合（両方 0）はスルー。
+    """
+    if open_must_fix_count > 0:
+        raise GuardError(
+            f"open な must_fix finding が {open_must_fix_count} 件あるため"
+            " Shortcut Story を In Review にできません"
+        )
+    if unmerged_pr_count > 0:
+        raise GuardError(
+            f"未 merge の PR が {unmerged_pr_count} 件あるため"
+            " Shortcut Story を In Review にできません"
+        )

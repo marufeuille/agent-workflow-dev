@@ -1,0 +1,9 @@
+# StoryPlanner が読む Shortcut Story のフィクスチャ（sc-123: saved-filters）
+id: "sc-123"
+name: "Add saved filters persistence"
+state: "Ready"
+description: "ユーザーが検索フィルタを保存・復元できるようにする。"
+acceptance_criteria:
+  - "AC-1: 保存したフィルタが正しく復元される"
+  - "AC-2: フィルタ名が空の場合は 400 を返す"
+comments: []

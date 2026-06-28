@@ -1,0 +1,7 @@
+# Implementer が実装後に作成する review subtask のフィクスチャ
+id: "bd-subtask-review-002"
+kind: "review"
+status: "ready"
+parent_task_id: "bd-task-001"
+instructions: "Review migration and model layer for correctness and scope adherence."
+output_refs: {}
