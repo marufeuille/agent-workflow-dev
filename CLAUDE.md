@@ -10,8 +10,9 @@ Shortcut × beads × GitHub × Claude Code を連携させた AI 開発ワーク
 - 実装ログ: [docs/impl/](docs/impl/)
 
 ## データモデル（粒度の階層）
-- **beads_story**（= Shortcut Story）: 人間が合意する成果単位
-- **beads_task**: PR 粒度の作業単位。PR 作成後に `pr_numbers` と紐づく
+- **Shortcut Story**: 人間が作成し、人間が最終受け入れを判断する成果単位
+- **beads_story**（= Shortcut Story）: Shortcut Story と 1:1 で紐づく AI workflow 上の root
+- **beads_task**: PR 粒度の作業単位。1 beads_task = 1 task branch / task PR。PR 作成後に `pr_numbers` と紐づく
 - **beads_subtask**: agent 実行単位。`kind` = implement / review / fix / verify / summarize
 - **review_finding**: review subtask から生まれる指摘。`severity` = must_fix / should_fix / nit / question
 
@@ -31,6 +32,13 @@ Shortcut × beads × GitHub × Claude Code を連携させた AI 開発ワーク
 4. **Reviewer は直接コードを修正しない**（review_finding を作るだけ）
 5. **Fixer は open review_finding の範囲だけ修正する**（範囲外の大きな変更はしない）
 6. **Implementer は planned_pr_scope / expected_files の範囲内のみ変更する**
+7. **外部システムは wrapper CLI 経由で操作する**（Shortcut/beads/GitHub を直接操作しない）
+
+## Claude Code agents / commands（フェーズD）
+- Agents: `.claude/agents/story-planner.md`, `implementer.md`, `reviewer.md`, `fixer.md`, `story-reviewer.md`
+- Commands: `.claude/commands/story-plan.md`, `work-next.md`, `review-pr.md`, `fix-findings.md`, `story-review.md`
+- 各 agent は read/write 対象、禁止事項、使用する wrapper CLI を個別ファイルに明記している。
+- slash command は対応 agent を起動し、必要な wrapper CLI の前提確認と成果物の受け渡しを行う。
 
 ## wrapper CLI（フェーズCで実装済み: [phase-c.md](docs/impl/phase-c.md) / [bd-mapping.md](docs/design/bd-mapping.md)）
 - `bin/sc-story`: Shortcut Story の取得 / コメント / state 更新。**Done 遷移は禁止**（mock 完結、real API は後回し）

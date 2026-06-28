@@ -4,7 +4,7 @@
 
 ## 進捗・設計資料
 - 全体設計: [docs/design/00-overview.md](docs/design/00-overview.md) / 各Agent詳細: `docs/design/10-14`
-- 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB ✅） / [docs/impl/phase-c.md](docs/impl/phase-c.md)（フェーズC: wrapper CLI ✅）
+- 実装ログ: [docs/impl/phase-b.md](docs/impl/phase-b.md)（フェーズB ✅） / [docs/impl/phase-c.md](docs/impl/phase-c.md)（フェーズC: wrapper CLI ✅） / [docs/impl/phase-d.md](docs/impl/phase-d.md)（フェーズD: Claude Code 設定 ✅）
 - マッピング設計: [docs/design/bd-mapping.md](docs/design/bd-mapping.md)（5スキーマ → bd issue）
 - 次フェーズ計画: [docs/impl/phase-c-plan.md](docs/impl/phase-c-plan.md)（フェーズC ロードマップ・参考）
 
@@ -12,7 +12,7 @@
 - フェーズA（環境準備・大項目0-4）: ⏭️ 後回し（token発行・repo決定等の人間作業）
 - フェーズB（基盤・スキーマ・設定・大項目5-7）: ✅ 完了
 - フェーズC（wrapper CLI・大項目8-10）: ✅ 完了（[実装ログ](docs/impl/phase-c.md)）
-- フェーズD（Claude Code 設定・大項目11-13）: 未着手
+- フェーズD（Claude Code 設定・大項目11-13）: ✅ 完了（[実装ログ](docs/impl/phase-d.md)）
 - フェーズE（検証・ガード・大項目14-20）: 未着手
 - フェーズF（MVP・運用・大項目21-23）: 未着手
 
@@ -267,34 +267,34 @@ bin/ghw pr create-final --story-branch <branch> --base main
 
 ### 11. Claude Code 共通ルールを作成する
 
-- [ ] `CLAUDE.md` に workflow の基本ルールを書く
-- [ ] Shortcut Story は人間の受け入れ単位であると明記する
-- [ ] beads_task は PR 粒度であると明記する
-- [ ] beads_subtask は agent 実行単位であると明記する
-- [ ] PR は原則 story branch 宛てに作ると明記する
-- [ ] AI agent は Shortcut Story を Done にしてはいけないと明記する
-- [ ] AI agent は main に merge してはいけないと明記する
-- [ ] Reviewer は直接修正せず、review_finding を作ると明記する
-- [ ] Fixer は open finding の範囲だけ修正すると明記する
+- [x] `CLAUDE.md` に workflow の基本ルールを書く
+- [x] Shortcut Story は人間の受け入れ単位であると明記する
+- [x] beads_task は PR 粒度であると明記する
+- [x] beads_subtask は agent 実行単位であると明記する
+- [x] PR は原則 story branch 宛てに作ると明記する
+- [x] AI agent は Shortcut Story を Done にしてはいけないと明記する
+- [x] AI agent は main に merge してはいけないと明記する
+- [x] Reviewer は直接修正せず、review_finding を作ると明記する
+- [x] Fixer は open finding の範囲だけ修正すると明記する
 
 ### 12. Claude Code subagent を作成する
 
-- [ ] `story-planner.md` を作成する
-- [ ] `implementer.md` を作成する
-- [ ] `reviewer.md` を作成する
-- [ ] `fixer.md` を作成する
-- [ ] `story-reviewer.md` を作成する
-- [ ] 各 subagent に read/write してよい対象を書く
-- [ ] 各 subagent に禁止事項を書く
-- [ ] 各 subagent が使う wrapper CLI を明記する
+- [x] `story-planner.md` を作成する
+- [x] `implementer.md` を作成する
+- [x] `reviewer.md` を作成する
+- [x] `fixer.md` を作成する
+- [x] `story-reviewer.md` を作成する
+- [x] 各 subagent に read/write してよい対象を書く
+- [x] 各 subagent に禁止事項を書く
+- [x] 各 subagent が使う wrapper CLI を明記する
 
 ### 13. Claude Code command を作成する
 
-- [ ] `/story-plan` 相当の command を作成する
-- [ ] `/work-next` 相当の command を作成する
-- [ ] `/review-pr` 相当の command を作成する
-- [ ] `/fix-findings` 相当の command を作成する
-- [ ] `/story-review` 相当の command を作成する
+- [x] `/story-plan` 相当の command を作成する
+- [x] `/work-next` 相当の command を作成する
+- [x] `/review-pr` 相当の command を作成する
+- [x] `/fix-findings` 相当の command を作成する
+- [x] `/story-review` 相当の command を作成する
 
 ```text
 /story-plan <shortcut-story-id>
@@ -417,4 +417,3 @@ bin/ghw pr create-final --story-branch <branch> --base main
 - [ ] AI agent が Shortcut Story を Done にしない
 - [ ] AI agent が main に merge しない
 - [ ] 人間が Shortcut 上で最終 Done 判断できる
-
